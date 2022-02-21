@@ -8,4 +8,4 @@ utility functions
 def cmp_str(element1, element2):
     """compare number in str format correctley
     """
-    return cmp(int(element1), int(element2))
+    return (int(element1) > int(element2)) - (int(element1) < int(element2))
