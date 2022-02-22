@@ -9,6 +9,7 @@ main module of basic Mondrian
 import pdb
 import random
 import sys
+from functools import cmp_to_key
 
 from models.numrange import NumRange
 from models.gentree import GenTree
@@ -111,9 +112,8 @@ def find_median(partition, dim):
     frequency = frequency_set(partition, dim)
     splitVal = ''
     value_list = frequency.keys()
-    value_list=list(value_list)
-  # value_list.sort(cmp=cmp_str)
-
+    #value_list.sort(cmp=cmp_str)
+    value_list = sorted(list(value_list), key=cmp_to_key(cmp_str))
     total = sum(frequency.values())
     middle = total / 2
     if middle < GL_K or len(value_list) <= 1:
