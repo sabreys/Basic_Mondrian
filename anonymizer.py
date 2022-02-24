@@ -146,7 +146,7 @@ if __name__ == '__main__':
     if DATA_SELECT == 'a':
         print ("Adult data")
     else:
-        print( "INFORMS data")
+        print("INFORMS data")
     print ('#' * 30)
     if FLAG == 'k':
         get_result_k(ATT_TREES, RAW_DATA)

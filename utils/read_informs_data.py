@@ -4,6 +4,8 @@
 # Read data and read tree fuctions for INFORMS data
 # user att ['DUID', 'PID', 'DUPERSID', 'DOBMM', 'DOBYY', 'SEX', 'RACEX', 'RACEAX', 'RACEBX', 'RACEWX', 'RACETHNX', 'HISPANX', 'HISPCAT', 'EDUCYEAR', 'Year', 'marry', 'income', 'poverty']
 # condition att ['DUID', 'DUPERSID', 'ICD9CODX', 'year']
+from functools import cmp_to_key
+
 from models.gentree import GenTree
 from models.numrange import NumRange
 from utils.utility import cmp_str
@@ -135,7 +137,7 @@ def read_data(flag=0):
         except:
             conditiondata[row[1]] = [row]
     hashdata = {}
-    for k, v in userdata.iteritems():
+    for k, v in userdata.items():
         if __DEBUG and len(v) > 1:
             # check changes on QIDs excluding year(2003-2005)
             for i in range(len(USER_ATT)):
@@ -162,13 +164,14 @@ def read_data(flag=0):
             # sort values
             stemp.sort()
             hashdata[k].append(stemp[:])
-    for k, v in hashdata.iteritems():
+    for k, v in hashdata.items():
         data.append(v)
     for i in range(QI_num):
         if IS_CAT[i] is False:
             static_file = open('data/informs_' + USER_ATT[QI_INDEX[i]] + '_static.pickle', 'wb')
             sort_value = list(numeric_dict[i].keys())
-            sort_value.sort(cmp=cmp_str)
+            sort_value = sorted(sort_value,key= cmp_to_key(cmp_str))
+            #sort_value.sort(cmp=cmp_str)
             pickle.dump((numeric_dict[i], sort_value), static_file)
             static_file.close()
     userfile.close()
