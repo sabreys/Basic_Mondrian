@@ -42,7 +42,7 @@ def read_data():
         numeric_dict.append(dict())
     # oder categorical attributes in intuitive order
     # here, we use the appear number
-    data_file = open('data/adult.data', 'rU')
+    data_file = open('data/outlier4.csv', 'rU')
     for line in data_file:
         line = line.strip()
         # remove empty and incomplete lines

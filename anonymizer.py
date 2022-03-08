@@ -27,9 +27,9 @@ def extend_result(val):
 
 def write_to_file(result):
     """
-    write the anonymized result to anonymized.data
+    write the anonymized result to data4.data
     """
-    with open("data/anonymized.data", "w") as output:
+    with open("data/data4.data", "w") as output:
         for r in result:
             output.write(';'.join(map(extend_result, r)) + '\n')
 
